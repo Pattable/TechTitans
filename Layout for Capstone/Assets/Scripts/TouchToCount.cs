@@ -1,11 +1,14 @@
-
 using UnityEngine;
 using TouchScript.Gestures;
 
 public class TouchToCount : MonoBehaviour
 {
     public Counter counter;
+
+    public GameObject allower;
+
     private PressGesture pressGesture;
+
     void Awake()
     {
        pressGesture = GetComponent<PressGesture>();
@@ -22,6 +25,9 @@ public class TouchToCount : MonoBehaviour
 
     private void PressedHandler(object sender, System.EventArgs e)
     {
-        counter.IncreaseCounter();
+        if (allower != null && allower.activeSelf)
+        {
+            counter.IncreaseCounter();
+        }
     }
 }

@@ -1,10 +1,14 @@
 using UnityEngine;
 using TouchScript.Gestures;
 
-public class NegativeCount : MonoBehaviour
+public class SoundAccessorTouch : MonoBehaviour
 {
-    public Counter counter;
-
+    [SerializeField]
+    private SoundID hoverSound;
+    
+    [SerializeField]
+    private SoundID clickSound;
+    
     public GameObject allower;
 
     private PressGesture pressGesture;
@@ -13,6 +17,7 @@ public class NegativeCount : MonoBehaviour
     {
        pressGesture = GetComponent<PressGesture>();
     }
+
     void OnEnable()
     {
         pressGesture.Pressed += PressedHandler;
@@ -27,8 +32,7 @@ public class NegativeCount : MonoBehaviour
     {
         if (allower != null && allower.activeSelf)
         {
-            //Debug.Log("Negative Cube Tapped!");
-            counter.DecreaseCounter();
+            SoundManager.Instance.PlaySound2D(clickSound);
         }
     }
 }
